@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      text-align: center;
+      background-color: #B4C9EC;
+      font-family: Arial, sans-serif;
+    }
+    
+    h1 {
+      margin-top: 10px;
+      font-size: 32px;
+      color: #333333;
+    }
+    
+    a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #FFFFFF;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    
+    a:hover {
+      background-color: #45a049;
+    }
+
+    #piechart_3d {
+      width: 60%;
+      max-width: 800px;
+      height: 450px;
+      margin: 5px auto;
+    }
+    
+</style>
+</head>
+<body>
+  <h1>Animesh Gupta</h1>
+  <h1>1002036991</h1>
+
+  <div>
+    <a href="/">Home</a>
+  </div>
+
+  
+  <div class="piechart__parent"><div id="piechart_3d" style="mix-blend-mode: multiply;">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load("current", { packages: ["corechart"] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Magnitude');
+      data.addColumn('number', 'Number');
+    
+      {% for r in rows %}
+      data.addRows([["{{ r[0] }} and {{ r[1] }}", parseFloat("{{ r[2] }}")]]);
+      {% endfor %}
+    
+      var options = {
+        title: 'Magnitudes',
+        is3D: true,
+      };
+      
+      var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+      chart.draw(data, options);
+    }
+  </script>
+  
+</body>
+</html>

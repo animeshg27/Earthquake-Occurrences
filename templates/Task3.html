@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      text-align: center;
+      background-color: #B4C9EC;
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      margin-top: 10px;
+      font-size: 32px;
+      color: #333333;
+    }
+
+    h2 {
+      font-size: 24px;
+      color: #333333;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #FFFFFF;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    a:hover {
+      background-color: #45a049;
+    }
+
+    #SChart {
+      width: 60%;
+      max-width: 900px;
+      height: 300px;
+      margin: 30px auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Animesh Gupta</h1>
+  <h1>1002036991</h1>
+  <div>
+    <a href="/">Home</a>
+  </div>
+
+  <!--<h2>Graph of magnitude against depth for the 100 recent quakes</h2>-->
+  
+  {% if msg %}
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Magnitude', 'Depth'],
+        {% for row in r %}
+        [{{ row[0] }}, {{ row[1] }}],
+        {% endfor %}
+      ]);
+
+      var options = {
+        title: 'TOP 100 Magnitude chart',
+        is2D: true,
+        width: 900,
+        height: 500,
+        hAxis: {
+          title: 'Magnitude',
+        },
+        vAxis: {
+          title: 'Depth',
+        },
+        legend: 'none',
+        tooltip: { isHtml: true }
+      };
+
+      var chart = new google.visualization.ScatterChart(document.getElementById('SChart'));
+      chart.draw(data, options);
+    }
+  </script>
+  <div class="SChart__parent"><div id="SChart" style="mix-blend-mode: multiply;">
+  <br>
+  {% endif %}
+</body>
+</html>

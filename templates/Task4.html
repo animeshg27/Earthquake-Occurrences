@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    h1{text-align: center;}
+    div{text-align: center;}
+		body{text-align: center;}
+	
+  </style>
+</head>
+<body >
+    <br>
+  <h1>Animesh Gupta</h1>
+  <h1>1002036991</h1><br><br>
+ 
+    <div>
+          <a href="/">Home</a><br><br>
+    </div>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {
+      'packages': ['map'],
+      'mapsApiKey': 'AIzaSyDvWWeRiHDOqJYbSjAuJgpcxIteCj1ytmk'
+      
+      });
+      google.charts.setOnLoadCallback(drawMap);
+  
+      function drawMap() {
+        var data = google.visualization.arrayToDataTable([
+          ['Lat','Long','Name'],
+          [32.7292,-97.1152, 'university'],
+          [32.8998,-97.0403,'airport']
+        ]);
+  
+      var options = {
+        showTooltip: true,
+        showInfoWindow: true
+      };
+  
+      var map = new google.visualization.Map(document.getElementById('chart_div'));
+  
+      map.draw(data, options);
+    };
+    </script>
+    </head>
+    <body>
+      <div id="chart_div"></div>
+  
+</body>
+</html>
